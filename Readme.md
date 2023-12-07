@@ -1,6 +1,6 @@
 # Taller 4 POO:
 
-Claro, aquí está la estructura de las clases con los métodos actualizados en el formato que solicitaste, sin incluir la funcionalidad de ventas de entradas:
+Estructura de las clases principales
 
 **EventoMusical**:
 - nombreEvento: String
