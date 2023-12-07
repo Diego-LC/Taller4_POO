@@ -1,9 +1,11 @@
 package controlador;
 
+import gui.VentanaPrincipal;
+
 public class Controlador {
 
 	public void iniciarSistema() {
-		throw new UnsupportedOperationException();
+		VentanaPrincipal vantanaPrincipal = new VentanaPrincipal( this);
 	}
 
 	public void guardarDatos() {

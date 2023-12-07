@@ -21,6 +21,7 @@ public class VentanaPrincipal extends VentanaGeneral implements ActionListener {
         this.generarElementos();
     }
 
+
     private void generarElementos() {
         super.generarJLabelEncabezado(null, "Sistema ventas de entradas", 100, 20, 300, 30);
         this.generarBotonMostrarCafes();
