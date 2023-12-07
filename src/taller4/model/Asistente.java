@@ -1,52 +1,57 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Asistente {
-	private String informaciónContacto;
+	private String informacionContacto;
 	private String preferenciasMusicales;
 	private ArrayList<Entrada> entradas;
-	private Entrada entrada;
 
-	public void getInformaciónContacto_String() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setInformaciónContacto_String(Object informaciónContacto_String) {
-		throw new UnsupportedOperationException();
-	}
-
-	public String getPreferenciasMusicales() {
-		return this.preferenciasMusicales;
-	}
-
-	public void setPreferenciasMusicales(String preferenciasMusicales) {
+	public Asistente(String informacionContacto, String preferenciasMusicales) {
+		this.informacionContacto = informacionContacto;
 		this.preferenciasMusicales = preferenciasMusicales;
+		this.entradas = new ArrayList<>();
 	}
 
-	public ArrayList<Entrada> getEntradas() {
-		throw new UnsupportedOperationException();
+	public void comprarEntrada(Entrada entrada) {
+		if (entrada != null) {
+			this.entradas.add(entrada);
+		} else {
+			System.out.println("Error: La entrada no puede ser nula.");
+		}
 	}
 
-	public void setEntradas(ArrayList<Entrada> entradas) {
-		throw new UnsupportedOperationException();
+	public void cancelarEntrada(Entrada entrada) {
+		if (this.entradas.contains(entrada)) {
+			this.entradas.remove(entrada);
+		} else {
+			System.out.println("Error: La entrada no existe en la lista.");
+		}
 	}
 
-	public Asistente() {
-		throw new UnsupportedOperationException();
+	public void mostrarDetalles() {
+		if (this.informacionContacto != null && this.preferenciasMusicales != null) {
+			System.out.println("InformaciÃ³n de Contacto: " + this.informacionContacto);
+			System.out.println("Preferencias Musicales: " + this.preferenciasMusicales);
+			System.out.println("Entradas: ");
+			for (Entrada entrada : this.entradas) {
+				System.out.println(entrada.getTipoEntrada());
+			}
+		} else {
+			System.out.println("Error: El asistente no tiene detalles para mostrar.");
+		}
 	}
 
-	public void comprarEntrada(Object entrada) {
-		throw new UnsupportedOperationException();
+	public void registrarAsistente(String informacionContacto, String preferenciasMusicales) {
+		if (informacionContacto != null && preferenciasMusicales != null) {
+			this.informacionContacto = informacionContacto;
+			this.preferenciasMusicales = preferenciasMusicales;
+		} else {
+			System.out.println("Error: La informaciÃ³n de contacto y las preferencias musicales no pueden ser nulas.");
+		}
 	}
 
-	public void cancelarEntrada(Object entrada) {
-		throw new UnsupportedOperationException();
-	}
-
-	public String mostrarDetalles() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void registrarAsistente() {
-		throw new UnsupportedOperationException();
+	public String getInformacionContacto() {
+		return informacionContacto;
 	}
 }
