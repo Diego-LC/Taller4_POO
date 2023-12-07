@@ -1,0 +1,106 @@
+package gui;
+
+import controlador.Controlador;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class VentanaPrincipal extends VentanaGeneral implements ActionListener {
+    private Controlador controlador;
+    private JButton botonMostrarCafes;
+    private JButton botonAgregarCafe;
+    private JButton botonBuscarCafe;
+    private JButton botonEliminarCafe;
+    private JButton botonSalir;
+
+    public VentanaPrincipal(Controlador controlador) {
+        super("Ventana Principal");
+        super.setSize(500, 500);
+        this.controlador = controlador;
+        this.generarElementos();
+    }
+
+    private void generarElementos() {
+        super.generarJLabelEncabezado(null, "Sistema ventas de entradas", 100, 20, 300, 30);
+        this.generarBotonMostrarCafes();
+        this.generarBotonAgregarCafe();
+        this.generarBotonBuscarCafe();
+        this.generarBotonEliminarCafe();
+        this.generarBotonSalir();
+    }
+
+    private void generarBotonMostrarCafes() {
+        JButton btnMostrarCafes = super.generarBoton("Vender Entradas", 100, 70, 300, 50);
+        this.botonMostrarCafes = btnMostrarCafes;
+        this.add(btnMostrarCafes);
+        this.botonMostrarCafes.addActionListener(this);
+    }
+
+    private void generarBotonAgregarCafe() {
+        JButton btnAgregarCafe = super.generarBoton("Registrar Artista", 100, 130, 300, 50);
+        this.botonAgregarCafe = btnAgregarCafe;
+        this.add(btnAgregarCafe);
+        this.botonAgregarCafe.addActionListener(this);
+    }
+
+    private void generarBotonBuscarCafe() {
+        JButton btnBuscarCafe = super.generarBoton("Registrar Asistente", 100, 190, 300, 50);
+        this.botonBuscarCafe = btnBuscarCafe;
+        this.add(btnBuscarCafe);
+        this.botonBuscarCafe.addActionListener(this);
+    }
+
+    private void generarBotonEliminarCafe() {
+        JButton btnEliminarCafe = super.generarBoton("Registro Evento", 100, 250, 300, 50);
+        this.botonEliminarCafe = btnEliminarCafe;
+        this.add(btnEliminarCafe);
+        this.botonEliminarCafe.addActionListener(this);
+    }
+
+    private void generarBotonSalir() {
+        JButton btnSalir = super.generarBoton("Salir", 100, 370, 300, 50);
+        this.botonSalir = btnSalir;
+        this.add(btnSalir);
+        this.botonSalir.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.botonMostrarCafes) {
+            // Mostrar la lista de cafés asociados
+            //VentanaMostrarCafes ventMostrarCafes = new VentanaMostrarCafes(VentanaPrincipal.this, this.controlador);
+            //ventMostrarCafes.setVisible(true);
+        }
+
+        if (e.getSource() == this.botonAgregarCafe) {
+            // Crear una nueva instancia de VentanaAgregarCafe y mostrarla
+            //VentanaAgregarCafe ventanaAgregarCafe = new VentanaAgregarCafe(VentanaPrincipal.this, this.controlador);
+            //ventanaAgregarCafe.setVisible(true);
+            // Opcional: ocultar la ventana principal
+            setVisible(false);
+        }
+
+        if (e.getSource() == this.botonBuscarCafe) {
+            // Crear una nueva instancia de VentanaBuscarCafe y mostrarla
+            //VentanaBuscarCafe ventanaBuscarCafe = new VentanaBuscarCafe(controlador, VentanaPrincipal.this);
+            //ventanaBuscarCafe.setVisible(true);
+            // Opcional: ocultar la ventana principal
+            setVisible(false);
+        }
+
+        if (e.getSource() == this.botonEliminarCafe) {
+            // Crear una nueva instancia de VentanaEliminarCafe y mostrarla
+            //VentanaEliminarCafe ventanaEliminarCafe = new VentanaEliminarCafe(controlador, VentanaPrincipal.this);
+            //ventanaEliminarCafe.setVisible(true);
+            // Opcional: ocultar la ventana principal
+            setVisible(false);
+        }
+
+        if (e.getSource() == this.botonSalir){
+            // Cierra la ventana
+            System.exit(0);
+            controlador.guardarDatos();
+        }
+    }
+}
