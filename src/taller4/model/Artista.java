@@ -49,7 +49,7 @@ public class Artista {
 			System.out.println("Nombre Artístico: " + this.nombreArtistico);
 			System.out.println("Género Musical: " + this.generoMusical);
 			System.out.println("Eventos: ");
-			for (EventoMusical evento : this.eventos) {
+			for (EventoMusical evento : this.eventosMusicales) {
 				System.out.println(evento.getNombreEvento());
 			}
 		} else {

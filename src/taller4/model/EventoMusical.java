@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
+
 import model.Artista;
 import model.Entrada;
 
@@ -10,9 +10,8 @@ public class EventoMusical {
 	private String nombreEvento;
 	private String lugar;
 	private Date fechaEvento;
-	private ArrayList<Artista> artistasAsosciados;
-	private Vector<Artista> artistasAsociados = new Vector<Artista>();
-	public Vector<Entrada> entradas = new Vector<Entrada>();
+	private ArrayList<Artista> artistasAsociados = new ArrayList<Artista>();
+	public ArrayList<Entrada> entradas = new ArrayList<Entrada>();
 
 	public String getNombreEvento() {
 		return this.nombreEvento;
@@ -51,22 +50,48 @@ public class EventoMusical {
 	}
 
 	public void setArtista(Artista artista) {
-		throw new UnsupportedOperationException();
+
+		if (artista != null) {
+			this.artistasAsociados.add(artista);
+		} else {
+			System.out.println("Error: El artista no puede ser nulo.");
+		}
 	}
 
-	public EventoMusical() {
-		throw new UnsupportedOperationException();
+	public EventoMusical(String nombreEvento, Date fecha, String lugar) {
+		this.nombreEvento = nombreEvento;
+		this.fechaEvento = fecha;
+		this.lugar = lugar;
+		this.artistasAsociados = new ArrayList<>();
+	}
+	public void eliminarArtista(Artista artista) {
+		if (this.artistasAsociados.contains(artista)) {
+			this.artistasAsociados.remove(artista);
+		} else {
+			System.out.println("Error: El artista no existe en la lista.");
+		}
 	}
 
-	public void eliminarArtista(Object artista) {
-		throw new UnsupportedOperationException();
+	public void mostrarDetalles() {
+		if (this.nombreEvento != null && this.fechaEvento != null && this.lugar != null) {
+			System.out.println("Nombre del Evento: " + this.nombreEvento);
+			System.out.println("Fecha: " + this.fechaEvento);
+			System.out.println("Lugar: " + this.lugar);
+			System.out.println("Artistas: ");
+			for (Artista artista : this.artistasAsociados) {
+				System.out.println(artista.getNombreArtistico());
+			}
+		} else {
+			System.out.println("Error: El evento musical no tiene detalles para mostrar.");
+		}
 	}
-
-	public String mostrarDetalles() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void crearEvento() {
-		throw new UnsupportedOperationException();
+	public void crearEvento(String nombreEvento, Date fecha, String lugar) {
+		if (nombreEvento != null && fecha != null && lugar != null) {
+			this.nombreEvento = nombreEvento;
+			this.fechaEvento = fecha;
+			this.lugar = lugar;
+		} else {
+			System.out.println("Error: El nombre del evento, la fecha y el lugar no pueden ser nulos.");
+		}
 	}
 }
