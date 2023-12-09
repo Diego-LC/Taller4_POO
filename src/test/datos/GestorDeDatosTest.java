@@ -24,8 +24,9 @@ class GestorDeDatosTest {
         GestorDeDatos gestor = new GestorDeDatos();
         String direccionArchivoArtista = "testArtista.txt";
         String direccionArchivoCafes = "testCafes.txt";
+        String direccionArchivoRelacionEv_Art = "eventos_artistas.txt";
 
-        assertDoesNotThrow(() -> gestor.leerArchivoArtista(direccionArchivoArtista, direccionArchivoCafes));
+        assertDoesNotThrow(() -> gestor.leerArchivoArtista(direccionArchivoArtista, direccionArchivoCafes, direccionArchivoRelacionEv_Art));
 
         // Agrega más aserciones para verificar el comportamiento esperado
     }

@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 
 public class VentanaPrincipal extends VentanaGeneral implements ActionListener {
     private Controlador controlador;
-    private JButton botonMostrarCafes;
-    private JButton botonAgregarCafe;
-    private JButton botonBuscarCafe;
-    private JButton botonEliminarCafe;
+    private JButton botonComprarEntradas;
+    private JButton botonMostarArtistas;
+    private JButton botonMostrarAsistentes;
+    private JButton botonMostrarEventos;
     private JButton botonSalir;
 
     public VentanaPrincipal(Controlador controlador) {
@@ -24,57 +24,52 @@ public class VentanaPrincipal extends VentanaGeneral implements ActionListener {
 
     private void generarElementos() {
         super.generarJLabelEncabezado(null, "Sistema ventas de entradas", 100, 20, 300, 30);
-        this.generarBotonMostrarCafes();
-        this.generarBotonAgregarCafe();
-        this.generarBotonBuscarCafe();
-        this.generarBotonEliminarCafe();
+        this.generarBotonComprarEntradas();
+        this.generarBotonMostrarArtistas();
+        this.generarBotonMostrarAsistentes();
+        this.generarBotonMostrarEventos();
         this.generarBotonSalir();
     }
 
-    private void generarBotonMostrarCafes() {
-        JButton btnMostrarCafes = super.generarBoton("Vender Entradas", 100, 70, 300, 50);
-        this.botonMostrarCafes = btnMostrarCafes;
-        this.add(btnMostrarCafes);
-        this.botonMostrarCafes.addActionListener(this);
+    private void generarBotonComprarEntradas() {
+        this.botonComprarEntradas = super.generarBoton("Comprar Entradas", 100, 70, 300, 50);
+        this.add(this.botonComprarEntradas);
+        this.botonComprarEntradas.addActionListener(this);
     }
 
-    private void generarBotonAgregarCafe() {
-        JButton btnAgregarCafe = super.generarBoton("Registrar Artista", 100, 130, 300, 50);
-        this.botonAgregarCafe = btnAgregarCafe;
-        this.add(btnAgregarCafe);
-        this.botonAgregarCafe.addActionListener(this);
+    private void generarBotonMostrarArtistas() {
+        this.botonMostarArtistas = super.generarBoton("Mostrar Artistas", 100, 130, 300, 50);
+        this.add(this.botonMostarArtistas);
+        this.botonMostarArtistas.addActionListener(this);
     }
 
-    private void generarBotonBuscarCafe() {
-        JButton btnBuscarCafe = super.generarBoton("Registrar Asistente", 100, 190, 300, 50);
-        this.botonBuscarCafe = btnBuscarCafe;
-        this.add(btnBuscarCafe);
-        this.botonBuscarCafe.addActionListener(this);
+    private void generarBotonMostrarAsistentes() {
+        this.botonMostrarAsistentes = super.generarBoton("Mostrar asistentes segun evento", 100, 190, 300, 50);
+        this.add(botonMostrarAsistentes);
+        this.botonMostrarAsistentes.addActionListener(this);
     }
 
-    private void generarBotonEliminarCafe() {
-        JButton btnEliminarCafe = super.generarBoton("Registro Evento", 100, 250, 300, 50);
-        this.botonEliminarCafe = btnEliminarCafe;
-        this.add(btnEliminarCafe);
-        this.botonEliminarCafe.addActionListener(this);
+    private void generarBotonMostrarEventos() {
+        this.botonMostrarEventos = super.generarBoton("Mostrar Eventos disponibles", 100, 250, 300, 50);
+        this.add(botonMostrarEventos);
+        this.botonMostrarEventos.addActionListener(this);
     }
 
     private void generarBotonSalir() {
-        JButton btnSalir = super.generarBoton("Salir", 100, 370, 300, 50);
-        this.botonSalir = btnSalir;
-        this.add(btnSalir);
+        this.botonSalir = super.generarBoton("Salir", 100, 370, 300, 50);
+        this.add(botonSalir);
         this.botonSalir.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.botonMostrarCafes) {
+        if (e.getSource() == this.botonComprarEntradas) {
             // Mostrar la lista de cafés asociados
             //VentanaMostrarCafes ventMostrarCafes = new VentanaMostrarCafes(VentanaPrincipal.this, this.controlador);
             //ventMostrarCafes.setVisible(true);
         }
 
-        if (e.getSource() == this.botonAgregarCafe) {
+        if (e.getSource() == this.botonMostarArtistas) {
             // Crear una nueva instancia de VentanaAgregarCafe y mostrarla
             //VentanaAgregarCafe ventanaAgregarCafe = new VentanaAgregarCafe(VentanaPrincipal.this, this.controlador);
             //ventanaAgregarCafe.setVisible(true);
@@ -82,7 +77,7 @@ public class VentanaPrincipal extends VentanaGeneral implements ActionListener {
             setVisible(false);
         }
 
-        if (e.getSource() == this.botonBuscarCafe) {
+        if (e.getSource() == this.botonMostrarAsistentes) {
             // Crear una nueva instancia de VentanaBuscarCafe y mostrarla
             //VentanaBuscarCafe ventanaBuscarCafe = new VentanaBuscarCafe(controlador, VentanaPrincipal.this);
             //ventanaBuscarCafe.setVisible(true);
@@ -90,7 +85,7 @@ public class VentanaPrincipal extends VentanaGeneral implements ActionListener {
             setVisible(false);
         }
 
-        if (e.getSource() == this.botonEliminarCafe) {
+        if (e.getSource() == this.botonMostrarEventos) {
             // Crear una nueva instancia de VentanaEliminarCafe y mostrarla
             //VentanaEliminarCafe ventanaEliminarCafe = new VentanaEliminarCafe(controlador, VentanaPrincipal.this);
             //ventanaEliminarCafe.setVisible(true);

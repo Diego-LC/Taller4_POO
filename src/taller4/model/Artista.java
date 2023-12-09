@@ -7,6 +7,10 @@ public class Artista {
 	private String generoMusical;
 	private ArrayList<EventoMusical> eventosMusicales;
 
+	public Artista() {
+
+	}
+
 	public String getNombreArtistico() {
 		return this.nombreArtistico;
 	}
@@ -27,9 +31,6 @@ public class Artista {
 		return this.eventosMusicales;
 	}
 
-	public Artista() {
-
-	}
 
 	public void agregarEvento(EventoMusical evento) {
 		this.eventosMusicales.add(evento);
@@ -43,19 +44,16 @@ public class Artista {
 		}
 	}
 
-
-	public void mostrarDetalles() {
-		if (this.nombreArtistico != null && this.generoMusical != null) {
-			System.out.println("Nombre Artístico: " + this.nombreArtistico);
-			System.out.println("Género Musical: " + this.generoMusical);
-			System.out.println("Eventos: ");
+	public void mostrarEventos() {
+		if (this.eventosMusicales.size() > 0) {
 			for (EventoMusical evento : this.eventosMusicales) {
-				System.out.println(evento.getNombreEvento());
+				System.out.println(evento.toString());
 			}
 		} else {
-			System.out.println("Error: El artista no tiene detalles para mostrar.");
+			System.out.println("Error: No hay eventos para mostrar.");
 		}
 	}
+
 	public void registrarArtista(String nombreArtistico, String generoMusical) {
 		if (nombreArtistico != null && generoMusical != null) {
 			this.nombreArtistico = nombreArtistico;
@@ -64,4 +62,10 @@ public class Artista {
 			System.out.println("Error: El nombre artístico y el género musical no pueden ser nulos.");
 		}
 	}
+
+	@Override
+	public String toString() {
+		return this.nombreArtistico + "," + this.generoMusical;
+	}
+
 }

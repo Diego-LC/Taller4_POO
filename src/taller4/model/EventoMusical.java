@@ -37,16 +37,8 @@ public class EventoMusical {
 		this.fechaEvento = fechaEvento;
 	}
 
-	public void getAttribute() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setAttribute(Object attribute) {
-		throw new UnsupportedOperationException();
-	}
-
 	public ArrayList<Artista> getArtistasAsosciados() {
-		throw new UnsupportedOperationException();
+		return this.artistasAsociados;
 	}
 
 	public void setArtista(Artista artista) {
@@ -64,6 +56,9 @@ public class EventoMusical {
 		this.lugar = lugar;
 		this.artistasAsociados = new ArrayList<>();
 	}
+	public EventoMusical() {
+	}
+
 	public void eliminarArtista(Artista artista) {
 		if (this.artistasAsociados.contains(artista)) {
 			this.artistasAsociados.remove(artista);
@@ -72,19 +67,6 @@ public class EventoMusical {
 		}
 	}
 
-	public void mostrarDetalles() {
-		if (this.nombreEvento != null && this.fechaEvento != null && this.lugar != null) {
-			System.out.println("Nombre del Evento: " + this.nombreEvento);
-			System.out.println("Fecha: " + this.fechaEvento);
-			System.out.println("Lugar: " + this.lugar);
-			System.out.println("Artistas: ");
-			for (Artista artista : this.artistasAsociados) {
-				System.out.println(artista.getNombreArtistico());
-			}
-		} else {
-			System.out.println("Error: El evento musical no tiene detalles para mostrar.");
-		}
-	}
 	public void crearEvento(String nombreEvento, Date fecha, String lugar) {
 		if (nombreEvento != null && fecha != null && lugar != null) {
 			this.nombreEvento = nombreEvento;
@@ -93,5 +75,10 @@ public class EventoMusical {
 		} else {
 			System.out.println("Error: El nombre del evento, la fecha y el lugar no pueden ser nulos.");
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return this.nombreEvento + "," + this.lugar + "," + this.fechaEvento.toString();
 	}
 }

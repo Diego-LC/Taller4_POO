@@ -2,9 +2,8 @@ package datos;
 
 import model.*;
 import java.io.*;
-import java.util.Locale;
-
-import java.io.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class GestorDeDatos {
 
@@ -32,7 +31,7 @@ public class GestorDeDatos {
 		}
 	}
 
-	public void leerArchivoArtista( String direccionArchivoArtista, String direccionArchivoCafes) {
+	public void leerArchivoArtista( String direccionArchivoArtista, String direccionArchivoEventos, String direccionArchivoRelacionEvento_Artista) {
 		String textoArchivo = "";
 		try {
 			File archivo = new File(direccionArchivoArtista);
@@ -40,35 +39,64 @@ public class GestorDeDatos {
 			BufferedReader br = new BufferedReader(fr);
 			//Lee cada línea del archivo hasta que la línea sea nula
 			while((textoArchivo = br.readLine()) != null){
-				/*String[] data = textoArchivo.split(",");
-				cafeteria.setNombreCafeteria(data[0]);
-				cafeteria.setDireccion(data[1]);
-				cafeteria.setRedesSociales(new RedesSociales[] {
-						RedesSociales.valueOf(data[2].toUpperCase()),
-						RedesSociales.valueOf(data[3].toUpperCase()),
-						RedesSociales.valueOf(data[4].toUpperCase())
-				});
-				leerArchivoCafes(cafeteria, direccionArchivoCafes);*/
+				String[] data = textoArchivo.split(",");
+				Artista artista = new Artista();
+				artista.setNombreArtistico(data[0]);
+				artista.setGeneroMusical(data[1]);
+				//Se debe leer el archivo de relacion evento_artista para asociar los eventos al artista
+				leerArchivoRelacionEvento_Artista(artista, direccionArchivoRelacionEvento_Artista);
 			}
 			br.close();
 		} catch (Exception e) {
-			System.out.println("erro al leer el archivo " + direccionArchivoCafes+ " : " + e.getMessage());
+			System.out.println("erro al leer el archivo " + direccionArchivoEventos+ " : " + e.getMessage());
 		}
 		return ;
 	}
 
-	public void leerArchivoEvento(String direccionArchivoEvento, String direccionArchivoCafes) {
+	private void leerArchivoRelacionEvento_Artista(Artista artista, String direccionArchivoE_A) {
 		String textoArchivo = "";
 		try {
+			File archivo = new File(direccionArchivoE_A);
+			FileReader fr = new FileReader(archivo);
+			BufferedReader br = new BufferedReader(fr);
+			//Lee cada línea del archivo hasta que la línea sea nula
+			while((textoArchivo = br.readLine()) != null){
+				String[] data = textoArchivo.split(",");
+				if(data[1].equals(artista.getNombreArtistico())){
+					//Se debe leer el archivo de eventos para asociar los eventos al artista
+					leerArchivoEvento(artista, data[0]);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			System.out.println("erro al leer el archivo " + direccionArchivoE_A+ " : " + e.getMessage());
+		}
+		return ;
+	}
+
+	private void leerArchivoEvento(Artista artista, String direccionArchivoEvento) {
+		String textoArchivo = "";
+
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			File archivo = new File(direccionArchivoEvento);
 			FileReader fr = new FileReader(archivo);
 			BufferedReader br = new BufferedReader(fr);
 			//Lee cada línea del archivo hasta que la línea sea nula
 			while((textoArchivo = br.readLine()) != null){
+				String[] data = textoArchivo.split(",");
+				EventoMusical evento = new EventoMusical();
+				evento.setNombreEvento(data[0]);
+				evento.setLugar(data[2]);
+				Date fechaEvento = dateFormat.parse(data[1]);
+				evento.setFechaEvento(fechaEvento);
+				evento.setLugar(data[2]);
+				// Assuming that the Artista class has a method called addEvento(EventoMusical evento)
+				artista.agregarEvento(evento);
 			}
 			br.close();
 		} catch (Exception e) {
-			System.out.println("erro al leer el archivo " + direccionArchivoCafes+ " : " + e.getMessage());
+			System.out.println("erro al leer el archivo " + direccionArchivoEvento+ " : " + e.getMessage());
 		}
 		return ;
 	}

@@ -27,5 +27,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <sourceDirectory>E:\IdeaProjects\Taller4_POO\src\taller4</sourceDirectory>
+        <testSourceDirectory>E:\IdeaProjects\Taller4_POO\src\test</testSourceDirectory>
+        <outputDirectory>E:\IdeaProjects\Taller4_POO\target\classes</outputDirectory>
+        <testOutputDirectory>E:\IdeaProjects\Taller4_POO\target\test-classes</testOutputDirectory>
+    </build>
 
 </project>
